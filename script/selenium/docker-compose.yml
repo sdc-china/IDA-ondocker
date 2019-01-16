@@ -1,0 +1,150 @@
+version: '2'
+services:
+  firefox:
+    restart: always
+    image: selenium/node-firefox-debug:3.14.0-gallium
+    depends_on:
+      - hub
+    links:
+      - hub:hub
+    environment:
+      - HUB_PORT_4444_TCP_ADDR=hub
+      - HUB_PORT_4444_TCP_PORT=4444
+      - GRID_NEW_SESSION_WAIT_TIMEOUT=10000
+      - GRID_BROWSER_TIMEOUT=60
+      - GRID_TIMEOUT=60
+      
+  firefox2:
+    restart: always
+    image: selenium/node-firefox-debug:3.14.0-gallium
+    depends_on:
+      - hub
+    links:
+      - hub:hub
+    environment:
+      - HUB_PORT_4444_TCP_ADDR=hub
+      - HUB_PORT_4444_TCP_PORT=4444   
+      - GRID_NEW_SESSION_WAIT_TIMEOUT=10000
+      - GRID_BROWSER_TIMEOUT=60
+      - GRID_TIMEOUT=60
+      
+  firefox3:
+    restart: always
+    image: selenium/node-firefox-debug:3.14.0-gallium
+    depends_on:
+      - hub
+    links:
+      - hub:hub
+    environment:
+      - HUB_PORT_4444_TCP_ADDR=hub
+      - HUB_PORT_4444_TCP_PORT=4444
+      - GRID_NEW_SESSION_WAIT_TIMEOUT=10000
+      - GRID_BROWSER_TIMEOUT=60
+      - GRID_TIMEOUT=60
+      
+  firefox4:
+    restart: always
+    image: selenium/node-firefox-debug:3.14.0-gallium
+    depends_on:
+      - hub
+    links:
+      - hub:hub
+    environment:
+      - HUB_PORT_4444_TCP_ADDR=hub
+      - HUB_PORT_4444_TCP_PORT=4444
+      - GRID_NEW_SESSION_WAIT_TIMEOUT=10000
+      - GRID_BROWSER_TIMEOUT=60
+      - GRID_TIMEOUT=60
+      
+  firefox5:
+    restart: always
+    image: selenium/node-firefox-debug:3.14.0-gallium
+    depends_on:
+      - hub
+    links:
+      - hub:hub
+    environment:
+      - HUB_PORT_4444_TCP_ADDR=hub
+      - HUB_PORT_4444_TCP_PORT=4444
+      - GRID_NEW_SESSION_WAIT_TIMEOUT=10000
+      - GRID_BROWSER_TIMEOUT=60
+      - GRID_TIMEOUT=60 
+  chrome:
+    restart: always
+    image: selenium/node-chrome-debug:3.14.0-gallium
+    depends_on:
+      - hub
+    links:
+      - hub:hub
+    environment:
+      - HUB_PORT_4444_TCP_ADDR=hub
+      - HUB_PORT_4444_TCP_PORT=4444
+      - GRID_NEW_SESSION_WAIT_TIMEOUT=10000
+      - GRID_BROWSER_TIMEOUT=60
+      - GRID_TIMEOUT=60
+
+  chrome2:
+    restart: always
+    image: selenium/node-chrome-debug:3.14.0-gallium
+    depends_on:
+      - hub
+    links:
+      - hub:hub
+    environment:
+      - HUB_PORT_4444_TCP_ADDR=hub
+      - HUB_PORT_4444_TCP_PORT=4444
+      - GRID_NEW_SESSION_WAIT_TIMEOUT=10000
+      - GRID_BROWSER_TIMEOUT=60
+      - GRID_TIMEOUT=60
+
+  chrome3:
+    restart: always
+    image: selenium/node-chrome-debug:3.14.0-gallium
+    depends_on:
+      - hub
+    links:
+      - hub:hub
+    environment:
+      - HUB_PORT_4444_TCP_ADDR=hub
+      - HUB_PORT_4444_TCP_PORT=4444
+      - GRID_NEW_SESSION_WAIT_TIMEOUT=10000
+      - GRID_BROWSER_TIMEOUT=60
+      - GRID_TIMEOUT=60
+
+  chrome4:
+    restart: always
+    image: selenium/node-chrome-debug:3.14.0-gallium
+    depends_on:
+      - hub
+    links:
+      - hub:hub
+    environment:
+      - HUB_PORT_4444_TCP_ADDR=hub
+      - HUB_PORT_4444_TCP_PORT=4444
+      - GRID_NEW_SESSION_WAIT_TIMEOUT=10000
+      - GRID_BROWSER_TIMEOUT=60
+      - GRID_TIMEOUT=60
+
+  chrome5:
+    restart: always
+    image: selenium/node-chrome-debug:3.14.0-gallium
+    depends_on:
+      - hub
+    links:
+      - hub:hub
+    environment:
+      - HUB_PORT_4444_TCP_ADDR=hub
+      - HUB_PORT_4444_TCP_PORT=4444
+      - GRID_NEW_SESSION_WAIT_TIMEOUT=10000
+      - GRID_BROWSER_TIMEOUT=60
+      - GRID_TIMEOUT=60
+
+  hub:
+    restart: always
+    image: selenium/hub:3.14.0-gallium
+    ports:
+      - "4444:4444"
+    environment:
+      - GRID_NEW_SESSION_WAIT_TIMEOUT=10000
+      - GRID_BROWSER_TIMEOUT=60
+      - GRID_TIMEOUT=60

@@ -1,0 +1,45 @@
+version: '3'
+
+services:
+  idamysql_test:
+    restart: always
+    build:
+      context: ./mysql
+      dockerfile: Dockerfile
+    environment:
+      MYSQL_ROOT_PASSWORD: mysqladmin
+      MYSQL_DATABASE: ida
+    volumes:
+       - /var/mysql/demo_data:/var/lib/mysql
+  idaweb_test:
+    restart: always
+    depends_on:
+       - idamysql_test
+    command: >
+      bash -c "chmod +x /tmp/wait-for-it.sh
+      && sleep 5
+      && /tmp/wait-for-it.sh idamysql_test:3306 -t 0
+      && /opt/ol/wlp/bin/server run defaultServer"
+    build:
+      context: ./web
+      dockerfile: Dockerfile
+    ports: 
+      - "9443:9443"
+      - "9080:9080"
+    environment:     
+      DATABASE_DRIVER: com.mysql.jdbc.Driver
+      DATABASE_URL: jdbc:mysql://idamysql_test:3306/ida
+      DATABASE_USER: root
+      DATABASE_PASSWORD: mysqladmin
+      SERVER_HOST: 104.248.209.205
+      HTTP_PORT: 9080
+      HTTPS_PORT: 9443
+      CHECKSTYLE_ENABLED: "true"
+      CONNECTION_TIMEOUT: 30
+      WAIT_TIMEOUT: 5
+      RETRY_TIMES: 3
+      DEPLOYMENT_TIMEOUT: 600
+      DEPLOYMENT_INTERVAL: 30
+      TESTING_ENABLED: "true"
+      JASYPT_SECRET_KEY: password
+    
