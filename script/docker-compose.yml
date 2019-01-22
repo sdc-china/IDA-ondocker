@@ -46,3 +46,4 @@ services:
       JASYPT_SECRET_KEY: password
     volumes:
        - /var/keter/data:/var/keter/data 
+       - /var/keter/log:/opt/ol/wlp/output/defaultServer/logs
