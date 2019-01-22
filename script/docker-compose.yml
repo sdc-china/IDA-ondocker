@@ -6,6 +6,8 @@ services:
     build:
       context: ./mysql
       dockerfile: Dockerfile
+    ports: 
+      - "9443:9443"  
     environment:
       MYSQL_ROOT_PASSWORD: mysqladmin
       MYSQL_DATABASE: ida
