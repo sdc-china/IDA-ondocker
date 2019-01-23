@@ -3,6 +3,8 @@ services:
   firefox:
     restart: always
     image: selenium/node-firefox-debug:3.14.0-gallium
+    ports:    
+      - 5900
     depends_on:
       - hub
     links:
@@ -16,6 +18,8 @@ services:
   chrome:
     restart: always
     image: selenium/node-chrome-debug:3.14.0-gallium
+    ports:    
+      - 5900
     depends_on:
       - hub
     links:
