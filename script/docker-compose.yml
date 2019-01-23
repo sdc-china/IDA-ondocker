@@ -17,6 +17,7 @@ services:
     restart: always
     depends_on:
        - idamysql_test
+       - hub
     command: >
       bash -c "chmod +x /tmp/wait-for-it.sh
       && sleep 5
@@ -47,3 +48,42 @@ services:
     volumes:
        - /var/keter/data:/var/keter/data 
        - /var/keter/log:/opt/ol/wlp/output/defaultServer/logs
+  firefox:
+    restart: always
+    image: selenium/node-firefox-debug:3.14.0-gallium
+    ports:    
+      - "5900"
+    depends_on:
+      - hub
+    links:
+      - hub:hub
+    environment:
+      - HUB_PORT_4444_TCP_ADDR=hub
+      - HUB_PORT_4444_TCP_PORT=4444
+      - GRID_NEW_SESSION_WAIT_TIMEOUT=10000
+      - GRID_BROWSER_TIMEOUT=60
+      - GRID_TIMEOUT=60 
+  chrome:
+    restart: always
+    image: selenium/node-chrome-debug:3.14.0-gallium
+    ports:    
+      - "5900"
+    depends_on:
+      - hub
+    links:
+      - hub:hub
+    environment:
+      - HUB_PORT_4444_TCP_ADDR=hub
+      - HUB_PORT_4444_TCP_PORT=4444
+      - GRID_NEW_SESSION_WAIT_TIMEOUT=10000
+      - GRID_BROWSER_TIMEOUT=60
+      - GRID_TIMEOUT=60
+  hub:
+    restart: always
+    image: selenium/hub:3.14.0-gallium
+    ports:
+      - "4444:4444"
+    environment:
+      - GRID_NEW_SESSION_WAIT_TIMEOUT=10000
+      - GRID_BROWSER_TIMEOUT=60
+      - GRID_TIMEOUT=60
