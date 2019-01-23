@@ -6,7 +6,7 @@ services:
     build:
       context: ./mysql
       dockerfile: Dockerfile
-	networks:
+    networks:
       ida: {}  
     ports: 
       - "3306:3306"  
@@ -28,7 +28,7 @@ services:
     build:
       context: ./web
       dockerfile: Dockerfile
-	networks:
+    networks:
       ida: {}  
     ports: 
       - "9443:9443"
@@ -55,7 +55,7 @@ services:
   firefox:
     restart: always
     image: selenium/node-firefox-debug:3.14.0-gallium
-	networks:
+    networks:
       ida: {}
     ports:    
       - "5900"
@@ -72,7 +72,7 @@ services:
   chrome:
     restart: always
     image: selenium/node-chrome-debug:3.14.0-gallium
-	networks:
+    networks:
       ida: {}
     ports:    
       - "5900"
