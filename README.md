@@ -1,19 +1,12 @@
 # Install IDA on Docker
 
-### Supported Platforms
+### Pre-requisites
 
-* Ubuntu    
-* CentOS  
-* Red Hat Enterprise Linux  
-* Windows 10  
-* MAC OS  
-
-### Software Prerequisites
-
-* [Docker CE](https://docs.docker.com/install/)   
+* [Docker](https://docs.docker.com/install/)   
 * [Docker Compose](https://docs.docker.com/compose/install/)  
-* Docker Script   
-* IDA release package
+* [IDA on Docker scripts]((https://github.com/sdc-china/IDA-ondocker)   
+* IDA Package
+
 ##### Notes:
 - Your installation need to access internet. 
 - IDA Docker installation only for DEV testing purpose.       
@@ -21,8 +14,8 @@
 
 ### Procedure
 
-IDA supports Docker installatopm.Git Clone the  docker script from the [Link](https://github.com/sdc-china/IDA-ondocker)          
-1. Git clone the docker script into your machine.  
+IDA supports Docker installatopm. Git Clone the  docker script from the [IDA-ondocker](https://github.com/sdc-china/IDA-ondocker)          
+1. Git clone the docker script.  
 
 2. Manually copy the [mysql-connector-java-5.1.44.jar](http://central.maven.org/maven2/mysql/mysql-connector-java/5.1.44/mysql-connector-java-5.1.44.jar) into the ida-web.war\WEB-INF\lib\ folder.You can get ida-web.war from  build folder into the release package.  
 
@@ -75,11 +68,11 @@ Sometimes you want to troubleshooting the selenium backend browser running statu
    ![seleniumPort]   
    You can acquire the port by looking at the container details Like from the Image above we can see the VNC server is listening on the port no 5906 .    
   
-3. Open real VNC viewer,connect with docker ip and port no to connect.
+3. Open real VNC viewer,connect with docker ip and port no 
 
     ![vncviewer]  
     
-4. When you are prompted for the password pls eneter secret.     
+4. When you are prompted for the password please enter your password.     
 5. Running Our Test on the correct Port number will Open the Google in our Container and We can see the Browser running in our VNC Server.   
     ![vncviewerbrowser] 
     
