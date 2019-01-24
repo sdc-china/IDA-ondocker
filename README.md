@@ -4,7 +4,7 @@
 
 * [Docker](https://docs.docker.com/install/)   
 * [Docker Compose](https://docs.docker.com/compose/install/)  
-* [IDA on Docker scripts]((https://github.com/sdc-china/IDA-ondocker)   
+* [IDA on Docker scripts](https://github.com/sdc-china/IDA-ondocker)   
 * IDA Package
 
 ##### Notes:
