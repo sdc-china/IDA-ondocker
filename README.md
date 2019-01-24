@@ -83,9 +83,9 @@ Sometimes you want to troubleshooting the selenium backend browser running statu
 5. Running Our Test on the correct Port number will Open the Google in our Container and We can see the Browser running in our VNC Server.   
     ![vncviewerbrowser] 
     
-[dockerpackage]: ../images/dockerpackage.png 
-[seleniumNode]: ../images/selenium_node.png
-[dockerEnv]: ../images/dockerenv.png
-[seleniumPort]: ../images/seleniumgrid.png
-[vncviewer]: ../images/vncviewer.png
-[vncviewerbrowser]: ../images/vnc-view-browser.png
+[dockerpackage]: images/dockerpackage.png 
+[seleniumNode]: images/selenium_node.png
+[dockerEnv]: images/dockerenv.png
+[seleniumPort]: images/seleniumgrid.png
+[vncviewer]: images/vncviewer.png
+[vncviewerbrowser]: images/vnc-view-browser.png
