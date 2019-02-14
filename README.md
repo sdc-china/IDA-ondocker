@@ -12,6 +12,7 @@
 - IDA Docker installation only for DEV testing purpose.       
 - We map the mysql volumn for the /var/mysql/demo_data directory for customer to backup the mysql database.     
 
+
 ### Procedure
 
 1. Git clone [IDA-ondocker](https://github.com/sdc-china/IDA-ondocker) 
@@ -23,7 +24,7 @@
     ![dockerpackage]
  
     
-4. Update docker environment variable.Open the "docker-compose.yml" at "script" level folder.Replace the environment variables SERVER_HOST, HTTP_PORT and HTTPS_PORT with your actaul values.    
+4. Update docker environment variable.Open the "docker-compose.yml" at "script" level folder.Replace the environment variables SERVER_HOST, HTTP_PORT and HTTPS_PORT with your actaul values. If your machine ip is float,we strongly suggest you to use domain name to instead ip address for server host setting.           
 
      ![dockerEnv]   
  
