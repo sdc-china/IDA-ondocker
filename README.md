@@ -5,7 +5,7 @@
 * [Docker](https://docs.docker.com/install/)   
 * [Docker Compose](https://docs.docker.com/compose/install/)  
 * [IDA on Docker scripts](https://github.com/sdc-china/IDA-ondocker)   
-* IDA Package
+* [IDA Package](https://ibm.ent.box.com/folder/49559338541)    
 
 ##### Notes:
 - Your installation need to access internet. 
