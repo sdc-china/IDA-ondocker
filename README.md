@@ -37,7 +37,7 @@
 6. Start the IDA,use below command to start    
 
    ``` 
-   docker-compose up -d
+   docker-compose -p ida up -d
    ```  
    You can launch the ida application through the url for https://yourip:yourhttpsport/ida     
    You can open the browser http://dockerhostIP:4444/grid/console to check selenium grid/node installation status.           
