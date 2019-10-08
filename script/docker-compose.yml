@@ -42,13 +42,29 @@ services:
       HTTP_PORT: 9080
       HTTPS_PORT: 9443
       CHECKSTYLE_ENABLED: "true"
+      TESTING_ENABLED: "true"
       CONNECTION_TIMEOUT: 30
       WAIT_TIMEOUT: 5
       RETRY_TIMES: 3
       DEPLOYMENT_TIMEOUT: 600
       DEPLOYMENT_INTERVAL: 30
-      TESTING_ENABLED: "true"
       JASYPT_SECRET_KEY: password
+      ENABLE_CASE_HISTORY: "true"
+      MAX_CASE_HISTORY: 100
+      DATA_DIR: /var/keter/data
+      MAX_FILE_SIZE: 500M
+      MAX_REQUEST_SIZE: 500M
+      LDAP_ENABLE_FLAG: "false"
+      LDAP_URL: ldap://9.30.246.163:8389/
+      LDAP_LOGIN_USER_NAME: cn=admin,dc=example,dc=org
+      LDAP_LOGIN_USER_PASSWORD: admin
+      LDAP_BASE_DN: dc=example,dc=org
+      LDAP_USER_FILTER: uid={0},ou=people#cn={0},ou=dev#uid={0},ou=dev
+      LDAP_DEFAULT_ROLE: User
+      INSTALL_PACK_REMOTE_DIR: /tmp
+      SMTP_HOST: 9.110.83.246
+      SMTP_PORT: 25
+      EMAIL_FROM: supplier@sample.com
     volumes:
        - /var/keter/data:/var/keter/data 
        - /var/keter/log:/opt/ol/wlp/output/defaultServer/logs
