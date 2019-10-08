@@ -24,7 +24,7 @@
     ![dockerpackage]
  
     
-4. Update docker environment variable.Open the "docker-compose.yml" at "script" level folder.Replace the environment variables SERVER_HOST, HTTP_PORT and HTTPS_PORT with your actaul values. If your machine ip is float,we strongly suggest you to use domain name to instead ip address for SERVER_HOST setting.           
+4. Update docker environment variable.Open the "docker-compose.yml" at "script" level folder.Replace the environment variables SERVER_HOST, HTTP_PORT and HTTPS_PORT with your actaul values. If your machine ip is float,we strongly suggest you to use domain name to instead ip address for SERVER_HOST setting. If you don't use ldap,please make sure LDAP_BASE_DN flag is set to false.            
 
      ![dockerEnv]   
  
