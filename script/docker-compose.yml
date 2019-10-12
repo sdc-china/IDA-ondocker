@@ -6,8 +6,6 @@ services:
     build:
       context: ./mysql
       dockerfile: Dockerfile
-    networks:
-      ida: {}  
     ports: 
       - "3306:3306"  
     environment:
@@ -19,7 +17,7 @@ services:
     restart: always
     depends_on:
        - idamysql_test
-       - hub
+       - selenium-hub
     command: >
       bash -c "chmod +x /tmp/wait-for-it.sh
       && sleep 5
@@ -28,8 +26,6 @@ services:
     build:
       context: ./web
       dockerfile: Dockerfile
-    networks:
-      ida: {}  
     ports: 
       - "9443:9443"
       - "9080:9080"
@@ -72,48 +68,31 @@ services:
     volumes:
        - /var/ida/data:/var/ida/data 
        - /var/ida/log:/opt/ol/wlp/output/defaultServer/logs
-  firefox:
-    restart: always
-    image: selenium/node-firefox-debug:3.14.0-gallium
-    networks:
-      ida: {}
-    ports:    
-      - "5900"
-    depends_on:
-      - hub
-    links:
-      - hub:hub
-    environment:
-      - HUB_PORT_4444_TCP_ADDR=hub
-      - HUB_PORT_4444_TCP_PORT=4444
-      - GRID_NEW_SESSION_WAIT_TIMEOUT=10000
-      - GRID_BROWSER_TIMEOUT=60
-      - GRID_TIMEOUT=60 
+  selenium-hub:
+   image: selenium/hub:3.141.59-palladium
+   ports:
+     - "4444:4444"
+   environment:
+     - GRID_NEW_SESSION_WAIT_TIMEOUT=60000
+     - GRID_BROWSER_TIMEOUT=60
+     - GRID_TIMEOUT=60
   chrome:
-    restart: always
-    image: selenium/node-chrome-debug:3.14.0-gallium
-    networks:
-      ida: {}
-    ports:    
-      - "5900"
-    depends_on:
-      - hub
-    links:
-      - hub:hub
+    image: selenium/node-chrome:3.141.59-palladium
+    volumes:
+      - /dev/shm:/dev/shm
     environment:
-      - HUB_PORT_4444_TCP_ADDR=hub
-      - HUB_PORT_4444_TCP_PORT=4444
-      - GRID_NEW_SESSION_WAIT_TIMEOUT=10000
-      - GRID_BROWSER_TIMEOUT=60
-      - GRID_TIMEOUT=60
-  hub:
-    restart: always
-    image: selenium/hub:3.14.0-gallium
-    ports:
-      - "4444:4444"
+      HUB_HOST: selenium-hub
+      HUB_PORT: 4444
+      GRID_NEW_SESSION_WAIT_TIMEOUT: 60
+      GRID_BROWSER_TIMEOUT: 60
+      GRID_TIMEOUT: 60
+  firefox:
+    image: selenium/node-firefox:3.141.59-palladium
+    volumes:
+      - /dev/shm:/dev/shm
     environment:
-      - GRID_NEW_SESSION_WAIT_TIMEOUT=10000
-      - GRID_BROWSER_TIMEOUT=60
-      - GRID_TIMEOUT=60
-networks:
-      ida: {}
+      HUB_HOST: selenium-hub
+      HUB_PORT: 4444
+      GRID_NEW_SESSION_WAIT_TIMEOUT: 60
+      GRID_BROWSER_TIMEOUT: 60
+      GRID_TIMEOUT: 60
