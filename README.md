@@ -10,8 +10,10 @@
 ##### Notes:
 - Your installation need to access internet. 
 - IDA Docker installation only for DEV testing purpose.       
-- We map the mysql volumn for the /var/mysql/demo_data directory for customer to backup the mysql database.     
-
+- We map the mysql volumn for the /var/mysql/demo_data directory for customer to backup the mysql database. 
+- If you want to debug remote destop selenium grid container,you need to change selenium docker image name to debug image in docker-compose file.       
+selenium/node-chrome:3.141.59-palladium change to selenium/node-chrome-debug:3.141.59-palladium    
+selenium/node-firefox:3.141.59-palladium change to selenium/node-firefox-debug:3.141.59-palladium   
 
 ### Procedure
 
