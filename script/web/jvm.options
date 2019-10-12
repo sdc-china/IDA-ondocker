@@ -1,2 +1,2 @@
--Xms512m //This would configure a 512MB minimum Java heap
--Xmx1024m //This would configure a 1024MB maximum Java heap
+-Xms512m 
+-Xmx1024m 
