@@ -2,7 +2,7 @@ version: '2'
 services:
   firefox:
     restart: always
-    image: selenium/node-firefox:3.141.59-palladium
+    image: selenium/node-firefox-debug:3.141.59-palladium
     ports:    
       - 5900
     depends_on:
@@ -17,7 +17,7 @@ services:
       - GRID_TIMEOUT=60 
   chrome:
     restart: always
-    image: selenium/node-chrome:3.141.59-palladium
+    image: selenium/node-chrome-debug:3.141.59-palladium
     ports:    
       - 5900
     depends_on:
