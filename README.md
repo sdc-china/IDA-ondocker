@@ -11,7 +11,7 @@
 - Your installation need to access internet. 
 - IDA Docker installation only for DEV testing purpose.       
 - We map the mysql volumn for the /var/mysql/demo_data directory for customer to backup the mysql database.     
-
+- If you meet the installation issue,please raise the git issue,we will help to check that.
 
 ### Procedure
 
