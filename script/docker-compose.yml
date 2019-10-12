@@ -50,6 +50,9 @@ services:
       DEPLOYMENT_TIMEOUT: 600
       DEPLOYMENT_INTERVAL: 30
       JASYPT_SECRET_KEY: password
+      ACTIVEMQ_URL: tcp://9.30.255.220:61616
+      ACTIVEMQ_USER: admin
+      ACTIVEMQ_PASSWORD: admin
       ENABLE_CASE_HISTORY: "true"
       MAX_CASE_HISTORY: 100
       DATA_DIR: /var/keter/data
