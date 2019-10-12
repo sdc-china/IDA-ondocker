@@ -34,7 +34,7 @@
    docker-compose build
    ```    
 
-6. Start the IDA,use below command to start    
+6. Start the IDA,use below command to start. We use -p to specify  the project name to ida.  
 
    ``` 
    docker-compose -p ida up -d
@@ -45,7 +45,7 @@
 7.  The default setting is start one Selenium Hub with one Firefox nodes and one Chrome nodes.Run below command to scale  firefox and chrome node.You can check the gride node number from the web console.       
 
     ```  
-    docker-compose scale chrome=3 firefox=3
+    docker-compose -p ida scale chrome=3 firefox=3
     ```          
     ![seleniumNode]        
 8. Stop the IDA   
@@ -53,7 +53,7 @@
 You can stop the ida use docker-compose down command.   
 
    ``` 
-   docker-compose down 
+   docker-compose -p ida down 
    ```  
 ### Debug Selenium Container with RealVNC Viewer
 
