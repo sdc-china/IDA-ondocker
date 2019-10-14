@@ -10,7 +10,8 @@
 ##### Notes:
 - Your installation need to access internet. 
 - IDA Docker installation only for DEV testing purpose.       
-- We map the mysql volumn for the /var/mysql/demo_data directory for customer to backup the mysql database. 
+- We map the mysql volumn for the /var/mysql/demo_data directory for customer to backup the mysql database.     
+- If you meet the installation issue,please raise the git issue,we will help to check that.
 
 ### Procedure
 
@@ -23,7 +24,7 @@
     ![dockerpackage]
  
     
-4. Update docker environment variable.Open the "docker-compose.yml" at "script" level folder.Replace the environment variables SERVER_HOST, HTTP_PORT and HTTPS_PORT with your actaul values. If your machine ip is float,we strongly suggest you to use domain name to instead ip address for SERVER_HOST setting.           
+4. Update docker environment variable.Open the "docker-compose.yml" at "script" level folder.Replace the environment variables SERVER_HOST, HTTP_PORT and HTTPS_PORT with your actaul values. If your machine ip is float,we strongly suggest you to use domain name to instead ip address for SERVER_HOST setting. If you don't use ldap,please make sure LDAP_BASE_DN flag is set to false.            
 
      ![dockerEnv]   
  
@@ -33,7 +34,7 @@
    docker-compose build
    ```    
 
-6. Start the IDA,use below command to start    
+6. Start the IDA,use below command to start. We use -p to specify  the project name to ida.  
 
    ``` 
    docker-compose -p ida up -d
@@ -44,7 +45,7 @@
 7.  The default setting is start one Selenium Hub with one Firefox nodes and one Chrome nodes.Run below command to scale  firefox and chrome node.You can check the gride node number from the web console.       
 
     ```  
-    docker-compose scale chrome=3 firefox=3
+    docker-compose -p ida scale chrome=3 firefox=3
     ```          
     ![seleniumNode]        
 8. Stop the IDA   
@@ -52,7 +53,7 @@
 You can stop the ida use docker-compose down command.   
 
    ``` 
-   docker-compose down 
+   docker-compose -p ida down 
    ```  
 ### Debug Selenium Container with RealVNC Viewer
 
