@@ -6,8 +6,6 @@ services:
     build:
       context: ./mysql
       dockerfile: Dockerfile
-    networks:
-      ida: {}  
     ports: 
       - "3306:3306"  
     environment:
@@ -19,7 +17,7 @@ services:
     restart: always
     depends_on:
        - idamysql_test
-       - hub
+       - selenium-hub
     command: >
       bash -c "chmod +x /tmp/wait-for-it.sh
       && sleep 5
@@ -28,8 +26,6 @@ services:
     build:
       context: ./web
       dockerfile: Dockerfile
-    networks:
-      ida: {}  
     ports: 
       - "9443:9443"
       - "9080:9080"
@@ -42,58 +38,61 @@ services:
       HTTP_PORT: 9080
       HTTPS_PORT: 9443
       CHECKSTYLE_ENABLED: "true"
+      TESTING_ENABLED: "true"
       CONNECTION_TIMEOUT: 30
       WAIT_TIMEOUT: 5
       RETRY_TIMES: 3
+      RETRY_INTERVAL: 3
       DEPLOYMENT_TIMEOUT: 600
       DEPLOYMENT_INTERVAL: 30
-      TESTING_ENABLED: "true"
       JASYPT_SECRET_KEY: password
+      ACTIVEMQ_URL: tcp://9.30.255.220:61616
+      ACTIVEMQ_USER: admin
+      ACTIVEMQ_PASSWORD: admin
+      ENABLE_CASE_HISTORY: "true"
+      MAX_CASE_HISTORY: 100
+      DATA_DIR: /var/keter/data
+      MAX_FILE_SIZE: 500M
+      MAX_REQUEST_SIZE: 500M
+      LDAP_ENABLE_FLAG: "false"
+      LDAP_URL: ldap://9.30.246.163:8389/
+      LDAP_LOGIN_USER_NAME: cn=admin,dc=example,dc=org
+      LDAP_LOGIN_USER_PASSWORD: admin
+      LDAP_BASE_DN: dc=example,dc=org
+      LDAP_USER_FILTER: uid={0},ou=people#cn={0},ou=dev#uid={0},ou=dev
+      LDAP_DEFAULT_ROLE: User
+      INSTALL_PACK_REMOTE_DIR: /tmp
+      SMTP_HOST: 9.110.83.246
+      SMTP_PORT: 25
+      EMAIL_FROM: supplier@sample.com
     volumes:
-       - /var/keter/data:/var/keter/data 
-       - /var/keter/log:/opt/ol/wlp/output/defaultServer/logs
-  firefox:
-    restart: always
-    image: selenium/node-firefox-debug:3.14.0-gallium
-    networks:
-      ida: {}
-    ports:    
-      - "5900"
-    depends_on:
-      - hub
-    links:
-      - hub:hub
-    environment:
-      - HUB_PORT_4444_TCP_ADDR=hub
-      - HUB_PORT_4444_TCP_PORT=4444
-      - GRID_NEW_SESSION_WAIT_TIMEOUT=10000
-      - GRID_BROWSER_TIMEOUT=60
-      - GRID_TIMEOUT=60 
+       - /var/ida/data:/var/ida/data 
+       - /var/ida/log:/opt/ol/wlp/output/defaultServer/logs
+  selenium-hub:
+   image: selenium/hub:3.141.59-palladium
+   ports:
+     - "4444:4444"
+   environment:
+     - GRID_NEW_SESSION_WAIT_TIMEOUT=60000
+     - GRID_BROWSER_TIMEOUT=60
+     - GRID_TIMEOUT=60
   chrome:
-    restart: always
-    image: selenium/node-chrome-debug:3.14.0-gallium
-    networks:
-      ida: {}
-    ports:    
-      - "5900"
-    depends_on:
-      - hub
-    links:
-      - hub:hub
+    image: selenium/node-chrome:3.141.59-palladium
+    volumes:
+      - /dev/shm:/dev/shm
     environment:
-      - HUB_PORT_4444_TCP_ADDR=hub
-      - HUB_PORT_4444_TCP_PORT=4444
-      - GRID_NEW_SESSION_WAIT_TIMEOUT=10000
-      - GRID_BROWSER_TIMEOUT=60
-      - GRID_TIMEOUT=60
-  hub:
-    restart: always
-    image: selenium/hub:3.14.0-gallium
-    ports:
-      - "4444:4444"
+      HUB_HOST: selenium-hub
+      HUB_PORT: 4444
+      GRID_NEW_SESSION_WAIT_TIMEOUT: 60
+      GRID_BROWSER_TIMEOUT: 60
+      GRID_TIMEOUT: 60
+  firefox:
+    image: selenium/node-firefox:3.141.59-palladium
+    volumes:
+      - /dev/shm:/dev/shm
     environment:
-      - GRID_NEW_SESSION_WAIT_TIMEOUT=10000
-      - GRID_BROWSER_TIMEOUT=60
-      - GRID_TIMEOUT=60
-networks:
-      ida: {}
+      HUB_HOST: selenium-hub
+      HUB_PORT: 4444
+      GRID_NEW_SESSION_WAIT_TIMEOUT: 60
+      GRID_BROWSER_TIMEOUT: 60
+      GRID_TIMEOUT: 60
